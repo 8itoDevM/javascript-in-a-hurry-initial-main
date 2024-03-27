@@ -13,6 +13,45 @@ const galleryImages = [
     }
 ];
 
+const products = [
+    {
+      title: "AstroFiction",
+      author: "John Doe",
+      price: 49.9,
+      image: "./assets/products/img6.png"
+    },
+    {
+      title: "Space Odissey",
+      author: "Marie Anne",
+      price: 35,
+      image: "./assets/products/img1.png"
+    },
+    {
+      title: "Doomed City",
+      author: "Jason Cobert",
+      price: 0,
+      image: "./assets/products/img2.png"
+    },
+    {
+      title: "Black Dog",
+      author: "John Doe",
+      price: 85.35,
+      image: "./assets/products/img3.png"
+    },
+    {
+      title: "My Little Robot",
+      author: "Pedro Paulo",
+      price: 0,
+      image: "./assets/products/img5.png"
+    },
+    {
+      title: "Garden Girl",
+      author: "Ankit Patel",
+      price: 45,
+      image: "./assets/products/img4.png"
+    }
+  ];
+
 // Menu
 
 function menuHandler(){
@@ -125,9 +164,71 @@ function galleryHandler(){
 
 // Product section 
 
+/* <div class="product-item">
+<img src="./assets/products/img6.png" alt="AstroFiction">
+<div class="product-details">
+<h3 class="product-title">AstroFiction</h3>
+<p class="product-author">John Doe</p>
+<p class="price-title">Price</p>
+<p class="product-price">$ 49.90</p>
+</div> */
+
+function productsHandler(){
+    console.log("teste");
+    let productSection = document.querySelector(".products-area");
+
+    // run a loop through the products and create an HTML element ("product-item") for each of them
+    products.forEach(function(product, index){
+
+        // create the HTML element for the individual product
+        let productElm = document.createElement("div");
+        productElm.classList.add("product-item");
+
+        //create the product image
+        let productImage = document.createElement("img");
+        productImage.src = product.image;
+        productImage.alt = "Image for " + product.title;
+
+        // create the product details section
+        let productDetails = document.createElement("div");
+        productDetails.classList.add("product-details");
+
+        // create product title, author, price-title and price
+        let productTitle = document.createElement("div");
+        productTitle.classList.add("product-title");
+        productTitle.textContent = product.title;
+
+        let productAuthor = document.createElement("p");
+        productAuthor.classList.add("product-author");
+        productAuthor.textContent = product.author;
+
+        let priceTitle = document.createElement("p");
+        priceTitle.classList.add("price-title");
+        priceTitle.textContent = "Price";
+
+        let productPrice = document.createElement("p");
+        productPrice.classList.add("product-price");
+        productPrice.textContent = product.price > 0 ? "$"+product.price.toFixed(2) : "Free";
+
+        // Append the product details
+        productDetails.append(productTitle);
+        productDetails.append(productAuthor);
+        productDetails.append(priceTitle);
+        productDetails.append(productPrice);
+
+        // add all child HTML element of the product
+        productElm.append(productImage);
+        productElm.append(productDetails);
+
+        // Add complete individual produt to the produt section
+        productSection.append(productElm);
+    });
+}
+
 // pageload
 
 menuHandler();
 greetingHandler();
 clockHandler();
 galleryHandler();
+productsHandler();
