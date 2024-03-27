@@ -15,7 +15,20 @@ function celsiusToFahr(temperature){
     return fahr;
 }
 
-const greetingText = "Good Afternoon!";
+let currentHour = new Date().getHours();
+
+let greetingText;
+
+if(currentHour < 12){
+    greetingText = "Good Morning!";
+} else if (currentHour < 19){
+    greetingText = "Good Afternoon!";
+} else if (currentHour < 24){
+    greetingText = "Good Evening!";
+} else {
+    greetingText = "Welcome";
+}
+
 const weatherCondition = "sunny";
 const userLocation = "New York";
 let temperature = 15;
@@ -69,10 +82,6 @@ const galleryImages = [
         alt: "Thumbail Image 3"
     }
 ];
-
-// for (let i in galleryImages){
-//     console.log(galleryImages[i]);
-// }
 
 let mainImage = document.querySelector("#gallery > img");
 let thumbnails = document.querySelector("#gallery .thumbnails");
